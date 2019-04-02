@@ -1,4 +1,4 @@
-# text-unidecode
+# text_unidecode
 
 [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://altre.github.io/text-unidecode.jl/stable)
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://altre.github.io/text-unidecode.jl/dev)
