@@ -37,7 +37,7 @@ function get_cache(section::UInt32)::Vector{String}
     if isassigned(table, section+1) 
         table[section + 1]
     else
-        path = joinpath("resources", "X$(string(section, base = 16, pad = 3))" )
+        path = joinpath(@__DIR__, "..", "resources", "X$(string(section, base = 16, pad = 3))" )
         table[section + 1] = readlines(path)
     end
 end
