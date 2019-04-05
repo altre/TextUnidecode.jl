@@ -1,7 +1,7 @@
 name = "text_unidecode"
 uuid = "f11ebb6b-0c06-5f7f-950a-1aa6ed7ec1e7"
 authors = ["Alan Schelten <alan.schelten@mercateo.com>"]
-version = "1.0.0"
+version = "1.0.2"
 
 [deps]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
