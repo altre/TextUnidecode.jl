@@ -1,12 +1,21 @@
 module text_unidecode
-using Printf
 
 const table = Vector{Vector{String}}(undef, 256)
 
+"""
+Convert non-ascii characters to "good enough" ascii.
+```jldoctest
+julia> unidecode("南无阿弥陀佛")
+"Nan Wu A Mi Tuo Fo"
+
+julia> unidecode("あみだにょらい")
+amidaniyorai
+```
+"""
 function unidecode(str::String)::String
     new_string = Vector{String}()
-    for c in str
-        code_point = Int(c)
+    @inbounds for c in str
+        code_point = codepoint(c)
         if code_point < 0x80
             push!(new_string, string(c))
             continue
@@ -21,16 +30,15 @@ function unidecode(str::String)::String
             push!(new_string, cache[pos + 1])
         end
     end
-    join(new_string)
+    rstrip(join(new_string))
 end
 
-function get_cache(section)
-    try 
-        return table[section + 1]
-    catch UndefRefError
-        path = joinpath("resources", @sprintf "X%03x" section)
+function get_cache(section::UInt32)::Vector{String}
+    if isassigned(table, section+1) 
+        table[section + 1]
+    else
+        path = joinpath("resources", "X$(string(section, base = 16, pad = 3))" )
         table[section + 1] = readlines(path)
-        return table[section + 1]
     end
 end
 
