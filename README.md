@@ -1,7 +1,7 @@
-# text_unidecode
+# TextUnidecode
 
-[![Build Status](https://travis-ci.com/altre/text_unidecode.jl.svg?branch=master)](https://travis-ci.com/altre/text_unidecode.jl)
-[![Coveralls](https://coveralls.io/repos/github/altre/text_unidecode.jl/badge.svg?branch=master)](https://coveralls.io/github/altre/text_unidecode.jl?branch=master)
+[![Build Status](https://travis-ci.com/altre/TextUnidecode.jl.svg?branch=master)](https://travis-ci.com/altre/TextUnidecode.jl)
+[![Coveralls](https://coveralls.io/repos/github/altre/TextUnidecode.jl/badge.svg?branch=master)](https://coveralls.io/github/altre/TextUnidecode.jl?branch=master)
 
 Convert non-ascii characters to "good enough" ascii.
 ```

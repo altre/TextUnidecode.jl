@@ -1,7 +1,7 @@
-using text_unidecode
+using TextUnidecode
 using Test
 
-@testset "text_unidecode.jl" begin
+@testset "TextUnidecode.jl" begin
     @test unidecode("u") == "u"
     @test unidecode("uua") == "uua"
     @test unidecode(string(Char(0x10000))) == ""
