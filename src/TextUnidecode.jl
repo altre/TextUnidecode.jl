@@ -1,4 +1,4 @@
-module text_unidecode
+module TextUnidecode
 
 const table = Vector{Vector{String}}(undef, 256)
 

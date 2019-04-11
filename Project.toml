@@ -1,4 +1,4 @@
-name = "text_unidecode"
+name = "TextUnidecode"
 uuid = "f11ebb6b-0c06-5f7f-950a-1aa6ed7ec1e7"
 authors = ["Alan Schelten <alan.schelten@mercateo.com>"]
 version = "1.0.2"
