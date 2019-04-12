@@ -12,7 +12,7 @@ julia> unidecode("あみだにょらい")
 amidaniyorai
 ```
 """
-function unidecode(str::String)::String
+function unidecode(str::AbstractString)::AbstractString
     new_string = Vector{String}()
     @inbounds for c in str
         code_point = codepoint(c)
