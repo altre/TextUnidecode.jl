@@ -25,7 +25,7 @@ function unidecode(str::AbstractString)::AbstractString
             # Chop off last two hex digits
             section = code_point >> 8
             # Last two hex digits
-            pos = code_point % 256;
+            pos = code_point % 256
             cache = get_cache(section)
             push!(new_string, cache[pos + 1])
         end
@@ -38,9 +38,16 @@ function get_cache(section::UInt32)::Vector{String}
         table[section + 1]
     else
         path = joinpath(@__DIR__, "..", "resources", "X$(string(section, base = 16, pad = 3))" )
-        table[section + 1] = readlines(path)
+        try
+            table[section + 1] = readlines(path)
+        catch SystemError
+            # No match, remove all
+            table[section + 1] = fill("", 256)
+        end
+
     end
 end
 
 export unidecode
 end
+
