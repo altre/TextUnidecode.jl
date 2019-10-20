@@ -14,10 +14,12 @@ amidaniyorai
 """
 function unidecode(str::AbstractString)::AbstractString
     buf = IOBuffer()
+    ascii_char = Char(0)
     @inbounds for c in str
         code_point = codepoint(c)
         if code_point < 0x80
-            print(buf, c)
+            ascii_char = c
+            print(buf, ascii_char)
             continue
         elseif code_point > 0xffff
             continue
@@ -30,7 +32,11 @@ function unidecode(str::AbstractString)::AbstractString
             print(buf, cache[pos + 1])
         end
     end
-    rstrip(String(take!(buf)))
+    # rstrip if from unicode table
+    if buf.size > 1 && buf.data[buf.size] == 0x20 && ascii_char != ' '
+        buf.size -= 1
+    end
+    String(take!(buf))
 end
 
 function get_cache(section::UInt32)::Vector{String}

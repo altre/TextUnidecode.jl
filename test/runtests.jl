@@ -13,6 +13,7 @@ using Test
     @test unidecode("˿") == ""
     SubString("bla", 1, 2)
     @test unidecode(SubString("bla", 1, 2)) == "bl"
+    @test unidecode(" ") == " "
     # Check for no crashes
     for i in 0:0xffff
         unidecode(string(Char(i)))
