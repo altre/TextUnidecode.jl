@@ -44,13 +44,12 @@ function get_cache(section::UInt32)::Vector{String}
         table[section + 1]
     else
         path = joinpath(@__DIR__, "..", "resources", "X$(string(section, base = 16, pad = 3))" )
-        try
+        if isfile(path)
             table[section + 1] = readlines(path)
-        catch SystemError
+        else
             # No match, remove all
             table[section + 1] = fill("", 256)
         end
-
     end
 end
 
