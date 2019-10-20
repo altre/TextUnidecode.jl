@@ -13,11 +13,11 @@ amidaniyorai
 ```
 """
 function unidecode(str::AbstractString)::AbstractString
-    new_string = Vector{String}()
+    buf = IOBuffer()
     @inbounds for c in str
         code_point = codepoint(c)
         if code_point < 0x80
-            push!(new_string, string(c))
+            print(buf, c)
             continue
         elseif code_point > 0xffff
             continue
@@ -27,10 +27,10 @@ function unidecode(str::AbstractString)::AbstractString
             # Last two hex digits
             pos = code_point % 256
             cache = get_cache(section)
-            push!(new_string, cache[pos + 1])
+            print(buf, cache[pos + 1])
         end
     end
-    rstrip(join(new_string))
+    rstrip(String(take!(buf)))
 end
 
 function get_cache(section::UInt32)::Vector{String}
